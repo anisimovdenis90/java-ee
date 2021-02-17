@@ -19,21 +19,41 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">EShop</a>
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">List</a>
+                <c:url value="/main" var="MainUrl"/>
+                <a class="nav-link" href="${MainUrl}">Main</a>
+            </li>
+            <li class="nav-item active">
+                <c:url value="/catalog" var="CatalogUrl"/>
+                <a class="nav-link" href="${CatalogUrl}">Catalog</a>
+            </li>
+            <li class="nav-item active">
+                <c:url value="/cart" var="CartUrl"/>
+                <a class="nav-link" href="${CartUrl}">Cart</a>
+            </li>
+            <li class="nav-item active">
+                <c:url value="/order" var="OrderUrl"/>
+                <a class="nav-link" href="${OrderUrl}">Order</a>
+            </li>
+            <li class="nav-item active">
+                <c:url value="/product" var="ProductUrl"/>
+                <a class="nav-link" href="${ProductUrl}">Product</a>
+            </li>
+            <li class="nav-item active">
+                <c:url value="/user" var="UserUrl"/>
+                <a class="nav-link" href="${UserUrl}">User</a>
+            </li>
+            <li class="nav-item active">
+                <c:url value="/category" var="CategoryUrl"/>
+                <a class="nav-link" href="${CategoryUrl}">Category</a>
             </li>
         </ul>
     </div>
 </nav>
+
+<h1>Edit Product</h1>
 
 <div class="container">
     <div class="row py-2">
@@ -53,6 +73,16 @@
                     <label>Price</label>
                     <input type="number" class="form-control" id="price" name="price" value="${product.price}" placeholder="Enter price">
                 </div>
+
+                <div class="form-group">
+                    <label>Category</label>
+                    <select class="form-control" id="categoryId" name="categoryId">
+                        <c:forEach var="category" items="${requestScope.categories}">
+                            <option value="${category.id}">${category.name}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
