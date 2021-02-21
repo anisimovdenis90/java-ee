@@ -12,14 +12,17 @@ public class Product {
 
     private BigDecimal price;
 
+    private Long categoryId;
+
     public Product() {
     }
 
-    public Product(Long id, String name, String description, BigDecimal price) {
+    public Product(Long id, String name, String description, BigDecimal price, Long categoryId) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
+        this.categoryId = categoryId;
     }
 
     public Long getId() {
@@ -52,5 +55,13 @@ public class Product {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public Long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 }

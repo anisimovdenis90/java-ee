@@ -2,36 +2,34 @@
 
 <body>
 
-<h1>Edit Product</h1>
+<h1>Edit User</h1>
 
 <div class="container">
     <div class="row py-2">
         <div class="col-12">
-        <c:url value="/product" var="productSubmitUrl"/>
-            <form action="${productSubmitUrl}" method="post">
-                <input type="hidden" id="id" name="id" value="${product.id}">
+        <c:url value="/user" var="userSubmitUrl"/>
+            <form action="${userSubmitUrl}" method="post">
+                <input type="hidden" id="id" name="id" value="${user.id}">
                 <div class="form-group">
-                    <label>Name</label>
-                    <input type="text" class="form-control" id="name" name="name" value="${product.name}" placeholder="Enter name">
+                    <label>First Name</label>
+                    <input type="text" class="form-control" id="firstname" name="firstname" value="${user.firstname}" placeholder="Enter firstname">
                 </div>
                 <div class="form-group">
-                    <label>Description</label>
-                    <input type="text" class="form-control" id="description" name="description" value="${product.description}" placeholder="Enter description">
+                    <label>Last Name</label>
+                    <input type="text" class="form-control" id="lastname" name="lastname" value="${user.lastname}" placeholder="Enter lastname">
                 </div>
                 <div class="form-group">
-                    <label>Price</label>
-                    <input type="number" class="form-control" id="price" name="price" value="${product.price}" placeholder="Enter price">
+                    <label>Email</label>
+                    <input type="text" class="form-control" id="email" name="email" value="${user.email}" placeholder="Enter email">
                 </div>
-
                 <div class="form-group">
-                    <label>Category</label>
-                    <select class="form-control" id="categoryId" name="categoryId">
-                        <c:forEach var="category" items="${requestScope.categories}">
-                            <option value="${category.id}">${category.name}</option>
-                        </c:forEach>
-                    </select>
+                    <label>Birthday</label>
+                    <input type="text" class="form-control" id="birthday" name="birthday" value="${user.birthday}" placeholder="Enter birthday">
                 </div>
-
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="text" class="form-control" id="phone" name="phone" value="${user.phone}" placeholder="Enter phone">
+                </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>

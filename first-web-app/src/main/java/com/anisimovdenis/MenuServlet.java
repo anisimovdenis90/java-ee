@@ -5,7 +5,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.*;
+import java.io.IOException;
 
 @WebServlet(urlPatterns = "/nav_menu")
 public class MenuServlet extends HttpServlet {
@@ -29,11 +29,13 @@ public class MenuServlet extends HttpServlet {
         resp.getWriter().println("<div class=\"container-fluid\">");
         resp.getWriter().println("<div class=\"collapse navbar-collapse\" id=\"navbarNav\">");
         resp.getWriter().println("<ul class=\"navbar-nav\">");
-        resp.getWriter().println("<li class=\"nav-item\"><a class=\"nav-link\" href=\"" + req.getContextPath() + "/main\">Главная</a></li>");
-        resp.getWriter().println("<li class=\"nav-item\"><a class=\"nav-link\" href=\"" + req.getContextPath() + "/catalog\">Каталог</a></li>");
-        resp.getWriter().println("<li class=\"nav-item\"><a class=\"nav-link\" href=\"" + req.getContextPath() + "/cart\">Корзина</a></li>");
-        resp.getWriter().println("<li class=\"nav-item\"><a class=\"nav-link\" href=\"" + req.getContextPath() + "/product\">Продукт</a></li>");
-        resp.getWriter().println("<li class=\"nav-item\"><a class=\"nav-link\" href=\"" + req.getContextPath() + "/order\">Заказы</a></li>");
+        resp.getWriter().println("<li class=\"nav-item\"><a class=\"nav-link\" href=\"" + req.getContextPath() + "/main\">Main</a></li>");
+        resp.getWriter().println("<li class=\"nav-item\"><a class=\"nav-link\" href=\"" + req.getContextPath() + "/catalog\">Catalog</a></li>");
+        resp.getWriter().println("<li class=\"nav-item\"><a class=\"nav-link\" href=\"" + req.getContextPath() + "/cart\">Cart</a></li>");
+        resp.getWriter().println("<li class=\"nav-item\"><a class=\"nav-link\" href=\"" + req.getContextPath() + "/order\">Order</a></li>");
+        resp.getWriter().println("<li class=\"nav-item\"><a class=\"nav-link\" href=\"" + req.getContextPath() + "/product\">Product</a></li>");
+        resp.getWriter().println("<li class=\"nav-item\"><a class=\"nav-link\" href=\"" + req.getContextPath() + "/user\">User</a></li>");
+        resp.getWriter().println("<li class=\"nav-item\"><a class=\"nav-link\" href=\"" + req.getContextPath() + "/category\">Category</a></li>");
         resp.getWriter().println("</div>");
         resp.getWriter().println("</div>");
         resp.getWriter().println("</nav>");
