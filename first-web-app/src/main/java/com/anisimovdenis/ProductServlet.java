@@ -66,6 +66,7 @@ public class ProductServlet extends HttpServlet {
             getServletContext().getRequestDispatcher("/WEB-INF/product_form.jsp").forward(req, resp);
         } else if (req.getPathInfo().equals("/create")) {
             req.setAttribute("categories", categoryRepository.findAll());
+            req.setAttribute("product", new Product());
             getServletContext().getRequestDispatcher("/WEB-INF/product_form.jsp").forward(req, resp);
         } else if (req.getPathInfo().equals("/delete")) {
             Long id = parseId(req.getParameter("id"), resp);
@@ -80,7 +81,9 @@ public class ProductServlet extends HttpServlet {
     private Long parseId(String stringId, HttpServletResponse response) {
         Long id = null;
         try {
-            id = Long.parseLong(stringId);
+            if (stringId != null && !stringId.isBlank()) {
+                id = Long.parseLong(stringId);
+            }
         } catch (NumberFormatException e) {
             response.setStatus(400);
         }

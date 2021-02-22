@@ -49,6 +49,7 @@ public class CategoryServlet extends HttpServlet {
             req.setAttribute("category", category);
             getServletContext().getRequestDispatcher("/WEB-INF/category_form.jsp").forward(req, resp);
         } else if (req.getPathInfo().equals("/create")) {
+            req.setAttribute("category", new Category());
             getServletContext().getRequestDispatcher("/WEB-INF/category_form.jsp").forward(req, resp);
         } else if (req.getPathInfo().equals("/delete")) {
             Long id = parseId(req.getParameter("id"), resp);
@@ -63,7 +64,9 @@ public class CategoryServlet extends HttpServlet {
     private Long parseId(String stringId, HttpServletResponse response) {
         Long id = null;
         try {
-            id = Long.parseLong(stringId);
+            if (stringId != null && !stringId.isBlank()) {
+                id = Long.parseLong(stringId);
+            }
         } catch (NumberFormatException e) {
             response.setStatus(400);
         }
