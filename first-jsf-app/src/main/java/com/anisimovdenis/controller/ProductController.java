@@ -1,5 +1,7 @@
 package com.anisimovdenis.controller;
 
+import com.anisimovdenis.persist.Category;
+import com.anisimovdenis.persist.CategoryRepository;
 import com.anisimovdenis.persist.Product;
 import com.anisimovdenis.persist.ProductRepository;
 
@@ -15,6 +17,9 @@ public class ProductController implements Serializable {
 
     @Inject
     private ProductRepository productRepository;
+
+    @Inject
+    private CategoryRepository categoryRepository;
 
     private Product product;
 
@@ -33,6 +38,10 @@ public class ProductController implements Serializable {
 
     public List<Product> getAllProducts() {
         return productRepository.findAll();
+    }
+
+    public List<Category> getAllCategories() {
+        return categoryRepository.findAll();
     }
 
     public String editProduct(Product product) {
