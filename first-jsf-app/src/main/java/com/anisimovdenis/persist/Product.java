@@ -1,6 +1,5 @@
 package com.anisimovdenis.persist;
 
-import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 
 public class Product {
