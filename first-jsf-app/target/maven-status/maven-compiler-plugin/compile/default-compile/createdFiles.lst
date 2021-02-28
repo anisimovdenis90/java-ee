@@ -1,0 +1,11 @@
+com\anisimovdenis\persist\User.class
+com\anisimovdenis\persist\Category.class
+com\anisimovdenis\controller\UserController.class
+com\anisimovdenis\persist\ProductRepository.class
+com\anisimovdenis\filter\EncodingFilter.class
+com\anisimovdenis\persist\Product.class
+com\anisimovdenis\controller\CartController.class
+com\anisimovdenis\controller\ProductController.class
+com\anisimovdenis\persist\CategoryRepository.class
+com\anisimovdenis\persist\UserRepository.class
+com\anisimovdenis\controller\CategoryController.class

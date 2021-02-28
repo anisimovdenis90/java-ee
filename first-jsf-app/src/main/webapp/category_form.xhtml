@@ -1,0 +1,33 @@
+<html lang="en"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:param name="pageName" value="Category Form"/>
+<ui:include src="WEB-INF/fragments/head.xhtml"/>
+
+<h:body>
+
+    <ui:include src="WEB-INF/fragments/navigation.xhtml"/>
+
+    <div class="container">
+        <div class="row py-2">
+            <div class="col-12">
+                <h:form>
+                    <div class="form-group">
+                        <h:outputLabel for="name">Name</h:outputLabel>
+<!--                        <label>Name</label>-->
+                        <h:inputText styleClass="form-control" id="name"
+                                     value="#{categoryController.category.name}"
+                                     placeholder="Enter name"/>
+                        <h:message for="name" style="color: red"/>
+                    </div>
+                    <h:commandButton value="Submit" styleClass="btn btn-primary"
+                                     action="#{categoryController.saveCategory()}"/>
+                </h:form>
+            </div>
+        </div>
+    </div>
+
+    <ui:include src="WEB-INF/fragments/script.xhtml"/>
+</h:body>
+</html>
