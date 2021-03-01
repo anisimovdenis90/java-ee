@@ -4,6 +4,7 @@ import com.anisimovdenis.persist.Category;
 import com.anisimovdenis.persist.CategoryRepository;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.event.ComponentSystemEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -16,6 +17,8 @@ public class CategoryController implements Serializable {
     @Inject
     private CategoryRepository categoryRepository;
 
+    private List<Category> categories;
+
     private Category category;
 
     public Category getCategory() {
@@ -24,6 +27,10 @@ public class CategoryController implements Serializable {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public void preloadData(ComponentSystemEvent componentSystemEvent) {
+        categories = categoryRepository.findAll();
     }
 
     public String createCategory() {

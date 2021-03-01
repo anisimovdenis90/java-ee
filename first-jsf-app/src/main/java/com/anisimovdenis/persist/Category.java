@@ -1,11 +1,23 @@
 package com.anisimovdenis.persist;
 
+import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.List;
 
+@Entity
+@Table(name = "categories")
+@NamedQueries({
+        @NamedQuery(name = "findAllCategories", query = "FROM Category"),
+        @NamedQuery(name = "countAllCategories", query = "SELECT COUNT(*) FROM Category"),
+        @NamedQuery(name = "deleteCategoryById", query = "DELETE FROM Category c WHERE c.id = :id")
+})
 public class Category {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "name")
     @Size(min = 3, message = "Minimum 3 symbols")
     private String name;
 

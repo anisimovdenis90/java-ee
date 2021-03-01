@@ -43,11 +43,11 @@ public class ProductRepository {
     }
 
     public Long countAll() {
-        return em.createNamedQuery("countAll", Long.class).getSingleResult();
+        return em.createNamedQuery("countAllProducts", Long.class).getSingleResult();
     }
 
     public List<Product> findAll() {
-        return em.createNamedQuery("findAll", Product.class).getResultList();
+        return em.createNamedQuery("findAllProducts", Product.class).getResultList();
     }
 
     public Product findById(Long id) {
@@ -64,6 +64,6 @@ public class ProductRepository {
 
     @Transactional
     public void deleteById(Long id) {
-        em.createNamedQuery("deleteById").setParameter("id", id).executeUpdate();
+        em.createNamedQuery("deleteProductById").setParameter("id", id).executeUpdate();
     }
 }
