@@ -6,6 +6,7 @@ import com.anisimovdenis.persist.Product;
 import com.anisimovdenis.persist.ProductRepository;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.event.ComponentSystemEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -21,7 +22,13 @@ public class ProductController implements Serializable {
     @Inject
     private CategoryRepository categoryRepository;
 
+    private List<Product> products;
+
     private Product product;
+
+    public void preloadData(ComponentSystemEvent componentSystemEvent) {
+        products = productRepository.findAll();
+    }
 
     public Product getProduct() {
         return product;
@@ -37,7 +44,7 @@ public class ProductController implements Serializable {
     }
 
     public List<Product> getAllProducts() {
-        return productRepository.findAll();
+        return products;
     }
 
     public List<Category> getAllCategories() {

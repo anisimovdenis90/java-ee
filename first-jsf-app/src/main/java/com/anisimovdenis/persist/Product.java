@@ -1,17 +1,31 @@
 package com.anisimovdenis.persist;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 
+@Entity
+@Table(name = "products")
+@NamedQueries({
+        @NamedQuery(name = "findAll", query = "FROM Product"),
+        @NamedQuery(name = "countAll", query = "SELECT COUNT(*) FROM Product"),
+        @NamedQuery(name = "deleteById", query = "DELETE FROM Product p WHERE p.id = :id")
+})
 public class Product {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "description", length = 1024)
     private String description;
 
+    @Column(name = "price")
     private BigDecimal price;
 
+    @Column(name = "categoryId")
     private Long categoryId;
 
     public Product() {
