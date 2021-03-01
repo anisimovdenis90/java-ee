@@ -1,19 +1,34 @@
 package com.anisimovdenis.persist;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "users")
+@NamedQueries({
+        @NamedQuery(name = "findAllUsers", query = "FROM User"),
+        @NamedQuery(name = "countAllUsers", query = "SELECT COUNT(*) FROM User"),
+        @NamedQuery(name = "deleteUserById", query = "DELETE FROM User u WHERE u.id = :id")
+})
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "firstname")
     private String firstname;
 
+    @Column(name = "lastname")
     private String lastname;
 
+    @Column(name = "email")
     private String email;
 
+    @Column(name = "birthday")
     private LocalDate birthday;
 
+    @Column(name = "phone")
     private String phone;
 
     public User() {
