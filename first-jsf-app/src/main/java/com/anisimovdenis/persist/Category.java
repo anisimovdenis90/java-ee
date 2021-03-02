@@ -21,6 +21,9 @@ public class Category {
     @Size(min = 3, message = "Minimum 3 symbols")
     private String name;
 
+    @OneToMany(mappedBy = "category")
+    private List<Product> products;
+
     public Category() {
     }
 
@@ -43,5 +46,13 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 }

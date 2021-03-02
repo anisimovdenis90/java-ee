@@ -3,7 +3,6 @@ package com.anisimovdenis.persist;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
@@ -24,21 +23,6 @@ public class CategoryRepository {
 
     @Resource
     private UserTransaction ut;
-
-    @PostConstruct
-    public void init() throws Exception {
-        if (countAll() == 0) {
-            try {
-                ut.begin();
-                saveOrUpdate(new Category(null, "Category 1"));
-                saveOrUpdate(new Category(null, "Category 2"));
-                ut.commit();
-            } catch (Exception e) {
-                logger.error("", e);
-                ut.rollback();
-            }
-        }
-    }
 
     public Long countAll() {
         return em.createNamedQuery("countAllCategories", Long.class).getSingleResult();
