@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "products")
 @NamedQueries({
-        @NamedQuery(name = "findAllProducts", query = "FROM Product"),
+        @NamedQuery(name = "findAllProducts", query = "SELECT p FROM Product p JOIN FETCH p.category c"),
         @NamedQuery(name = "countAllProducts", query = "SELECT COUNT(*) FROM Product"),
         @NamedQuery(name = "deleteProductById", query = "DELETE FROM Product p WHERE p.id = :id")
 })

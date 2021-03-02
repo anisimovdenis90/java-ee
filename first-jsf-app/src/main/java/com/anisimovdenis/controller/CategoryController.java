@@ -39,7 +39,7 @@ public class CategoryController implements Serializable {
     }
 
     public List<Category> getAllCategories() {
-        return categoryRepository.findAll();
+        return categories;
     }
 
     public String editCategory(Category category) {
