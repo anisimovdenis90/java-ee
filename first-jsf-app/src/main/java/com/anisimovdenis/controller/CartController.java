@@ -1,30 +1,27 @@
 package com.anisimovdenis.controller;
 
-import com.anisimovdenis.persist.Product;
+import com.anisimovdenis.service.ProductDto;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.util.ArrayDeque;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Named
 @SessionScoped
 public class CartController implements Serializable {
 
-    private Map<Long, Product> productMap = new HashMap<>();
+    private Map<Long, ProductDto> productMap = new HashMap<>();
 
-    public void addToCart(Product product) {
+    public void addToCart(ProductDto product) {
         productMap.put(product.getId(), product);
     }
 
-    public void removeFromCart(Product product) {
+    public void removeFromCart(ProductDto product) {
         productMap.remove(product.getId());
     }
 
-    public Collection<Product> getCart() {
-        return new ArrayDeque<>(productMap.values());
+    public List<ProductDto> getCart() {
+        return new ArrayList<>(productMap.values());
     }
 }

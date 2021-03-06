@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.Resource;
+import javax.ejb.Stateless;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
@@ -12,17 +13,13 @@ import javax.transaction.Transactional;
 import javax.transaction.UserTransaction;
 import java.util.List;
 
-@Named
-@ApplicationScoped
+@Stateless
 public class CategoryRepository {
 
     private static final Logger logger = LoggerFactory.getLogger(Category.class);
 
     @PersistenceContext(unitName = "ds")
     private EntityManager em;
-
-    @Resource
-    private UserTransaction ut;
 
     public Long countAll() {
         return em.createNamedQuery("countAllCategories", Long.class).getSingleResult();
@@ -36,7 +33,10 @@ public class CategoryRepository {
         return em.find(Category.class, id);
     }
 
-    @Transactional
+    public Category getReference(Long id) {
+        return em.getReference(Category.class, id);
+    }
+
     public void saveOrUpdate(Category category) {
         if (category.getId() == null) {
             em.persist(category);
@@ -44,7 +44,6 @@ public class CategoryRepository {
         em.merge(category);
     }
 
-    @Transactional
     public void deleteById(Long id) {
         em.createNamedQuery("deleteCategoryById").setParameter("id", id).executeUpdate();
     }

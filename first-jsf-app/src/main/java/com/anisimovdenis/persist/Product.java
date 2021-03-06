@@ -1,5 +1,7 @@
 package com.anisimovdenis.persist;
 
+import com.anisimovdenis.service.ProductDto;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
@@ -32,11 +34,15 @@ public class Product {
     public Product() {
     }
 
-    public Product(Long id, String name, String description, BigDecimal price, Category category) {
+    public Product(Long id, String name, String description, BigDecimal price) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
+    }
+
+    public Product(ProductDto productDto, Category category) {
+        this(productDto.getId(), productDto.getName(), productDto.getDescription(), productDto.getPrice());
         this.category = category;
     }
 

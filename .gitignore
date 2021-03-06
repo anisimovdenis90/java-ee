@@ -1,2 +1,3 @@
 # Project exclude paths
 /first-web-app/target/
+/first-jsf-app/target/

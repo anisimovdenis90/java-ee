@@ -36,8 +36,8 @@
                     <div class="form-group">
                         <label>Category</label>
                         <h:selectOneMenu styleClass="form-control" id="category" name="category"
-                                         value="#{productController.product.category.id}">
-                            <f:selectItems value="#{productController.allCategories}" var="category"
+                                         value="#{productController.product.categoryId}">
+                            <f:selectItems value="#{productController.categories}" var="category"
                                            itemValue="#{category.id}" itemLabel="#{category.name}"/>
                         </h:selectOneMenu>
                     </div>

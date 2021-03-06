@@ -3,52 +3,22 @@ package com.anisimovdenis.persist;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
-import javax.transaction.UserTransaction;
-import java.math.BigDecimal;
 import java.util.List;
 
-@Named
-@ApplicationScoped
+@Stateless
 public class ProductRepository {
 
     private static final Logger logger = LoggerFactory.getLogger(ProductRepository.class);
 
-    @PersistenceContext(unitName = "ds")
-    private EntityManager em;
-
-    @Resource
-    private UserTransaction ut;
-
-    @Inject
+    @EJB
     private CategoryRepository categoryRepository;
 
-    @PostConstruct
-    public void init() throws Exception {
-        if (countAll() == 0) {
-            try {
-                ut.begin();
-                Category category1 = new Category(null, "Category 1");
-                Category category2 = new Category(null, "Category 2");
-                categoryRepository.saveOrUpdate(category1);
-                categoryRepository.saveOrUpdate(category2);
-                saveOrUpdate(new Product(null, "Product 1", "Description of product 1", new BigDecimal(100), category1));
-                saveOrUpdate(new Product(null, "Product 2", "Description of product 2", new BigDecimal(200), category1));
-                saveOrUpdate(new Product(null, "Product 3", "Description of product 3", new BigDecimal(300), category2));
-                ut.commit();
-            } catch (Exception e) {
-                logger.error("", e);
-                ut.rollback();
-            }
-        }
-    }
+    @PersistenceContext(unitName = "ds")
+    private EntityManager em;
 
     public Long countAll() {
         return em.createNamedQuery("countAllProducts", Long.class).getSingleResult();
@@ -62,7 +32,6 @@ public class ProductRepository {
         return em.find(Product.class, id);
     }
 
-    @Transactional
     public void saveOrUpdate(Product product) {
         if (product.getId() == null) {
             em.persist(product);
@@ -70,7 +39,6 @@ public class ProductRepository {
         em.merge(product);
     }
 
-    @Transactional
     public void deleteById(Long id) {
         em.createNamedQuery("deleteProductById").setParameter("id", id).executeUpdate();
     }

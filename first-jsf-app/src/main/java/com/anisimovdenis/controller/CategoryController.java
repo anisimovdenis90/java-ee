@@ -3,9 +3,9 @@ package com.anisimovdenis.controller;
 import com.anisimovdenis.persist.Category;
 import com.anisimovdenis.persist.CategoryRepository;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.event.ComponentSystemEvent;
-import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
@@ -14,7 +14,7 @@ import java.util.List;
 @SessionScoped
 public class CategoryController implements Serializable {
 
-    @Inject
+    @EJB
     private CategoryRepository categoryRepository;
 
     private List<Category> categories;
