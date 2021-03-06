@@ -6,9 +6,9 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "products")
 @NamedQueries({
-        @NamedQuery(name = "findAll", query = "FROM Product"),
-        @NamedQuery(name = "countAll", query = "SELECT COUNT(*) FROM Product"),
-        @NamedQuery(name = "deleteById", query = "DELETE FROM Product p WHERE p.id = :id")
+        @NamedQuery(name = "findAllProducts", query = "SELECT p FROM Product p JOIN FETCH p.category c"),
+        @NamedQuery(name = "countAllProducts", query = "SELECT COUNT(*) FROM Product"),
+        @NamedQuery(name = "deleteProductById", query = "DELETE FROM Product p WHERE p.id = :id")
 })
 public class Product {
 
@@ -25,18 +25,19 @@ public class Product {
     @Column(name = "price")
     private BigDecimal price;
 
-    @Column(name = "categoryId")
-    private Long categoryId;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     public Product() {
     }
 
-    public Product(Long id, String name, String description, BigDecimal price, Long categoryId) {
+    public Product(Long id, String name, String description, BigDecimal price, Category category) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
-        this.categoryId = categoryId;
+        this.category = category;
     }
 
     public Long getId() {
@@ -71,11 +72,11 @@ public class Product {
         this.price = price;
     }
 
-    public Long getCategoryId() {
-        return categoryId;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

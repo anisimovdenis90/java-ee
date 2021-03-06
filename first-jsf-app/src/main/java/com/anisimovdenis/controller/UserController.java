@@ -4,6 +4,7 @@ import com.anisimovdenis.persist.User;
 import com.anisimovdenis.persist.UserRepository;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.event.ComponentSystemEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -16,6 +17,8 @@ public class UserController implements Serializable {
     @Inject
     private UserRepository userRepository;
 
+    private List<User> users;
+
     private User user;
 
     public User getUser() {
@@ -26,13 +29,17 @@ public class UserController implements Serializable {
         this.user = user;
     }
 
+    public void preloadData(ComponentSystemEvent componentSystemEvent) {
+        users = userRepository.findAll();
+    }
+
     public String createUser() {
         this.user = new User();
         return "/user_form.xhtml?faces-redirect=true";
     }
 
     public List<User> getAllUsers() {
-        return userRepository.findAll();
+        return users;
     }
 
     public String editUser(User user) {

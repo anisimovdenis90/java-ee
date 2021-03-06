@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -26,14 +27,21 @@ public class ProductRepository {
     @Resource
     private UserTransaction ut;
 
+    @Inject
+    private CategoryRepository categoryRepository;
+
     @PostConstruct
     public void init() throws Exception {
         if (countAll() == 0) {
             try {
                 ut.begin();
-                saveOrUpdate(new Product(null, "Product 1", "Description of product 1", new BigDecimal(100), 1L));
-                saveOrUpdate(new Product(null, "Product 2", "Description of product 2", new BigDecimal(200), 1L));
-                saveOrUpdate(new Product(null, "Product 3", "Description of product 3", new BigDecimal(300), 2L));
+                Category category1 = new Category(null, "Category 1");
+                Category category2 = new Category(null, "Category 2");
+                categoryRepository.saveOrUpdate(category1);
+                categoryRepository.saveOrUpdate(category2);
+                saveOrUpdate(new Product(null, "Product 1", "Description of product 1", new BigDecimal(100), category1));
+                saveOrUpdate(new Product(null, "Product 2", "Description of product 2", new BigDecimal(200), category1));
+                saveOrUpdate(new Product(null, "Product 3", "Description of product 3", new BigDecimal(300), category2));
                 ut.commit();
             } catch (Exception e) {
                 logger.error("", e);
@@ -43,11 +51,11 @@ public class ProductRepository {
     }
 
     public Long countAll() {
-        return em.createNamedQuery("countAll", Long.class).getSingleResult();
+        return em.createNamedQuery("countAllProducts", Long.class).getSingleResult();
     }
 
     public List<Product> findAll() {
-        return em.createNamedQuery("findAll", Product.class).getResultList();
+        return em.createNamedQuery("findAllProducts", Product.class).getResultList();
     }
 
     public Product findById(Long id) {
@@ -64,6 +72,6 @@ public class ProductRepository {
 
     @Transactional
     public void deleteById(Long id) {
-        em.createNamedQuery("deleteById").setParameter("id", id).executeUpdate();
+        em.createNamedQuery("deleteProductById").setParameter("id", id).executeUpdate();
     }
 }
