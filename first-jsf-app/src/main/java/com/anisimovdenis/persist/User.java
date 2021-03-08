@@ -1,5 +1,7 @@
 package com.anisimovdenis.persist;
 
+import com.anisimovdenis.service.UserDto;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -41,6 +43,10 @@ public class User {
         this.email = email;
         this.birthday = birthday;
         this.phone = phone;
+    }
+
+    public User(UserDto userDto) {
+        this(userDto.getId(), userDto.getFirstname(), userDto.getLastname(), userDto.getEmail(), userDto.getBirthday(), userDto.getPhone());
     }
 
     public Long getId() {
