@@ -1,7 +1,8 @@
 <html lang="en"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:pp="http://primefaces.org/ui">
 
 <ui:param name="pageName" value="Users"/>
 <ui:include src="WEB-INF/fragments/head.xhtml"/>
@@ -49,15 +50,14 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">Actions</f:facet>
-                            <h:commandButton value="Edit" styleClass="btn btn-success"
-                                             action="#{userController.editUser(user)}">
-                                <i class="fas fa-edit"/>
-                            </h:commandButton>
-                            <h:commandButton value="Delete" styleClass="btn btn-danger"
-                                             action="#{userController.deleteUser(user)}">
-                                <i class="fas fa-trash-alt"/>
+                            <pp:commandButton styleClass="btn btn-success"
+                                              icon="fas fa-edit"
+                                              action="#{userController.editUser(user)}"/>
+                            <pp:commandButton styleClass="btn btn-danger"
+                                              icon="fas fa-trash-alt"
+                                              action="#{userController.deleteUser(user)}">
                                 <f:ajax event="click" render="userForm"/>
-                            </h:commandButton>
+                            </pp:commandButton>
                         </h:column>
                     </h:dataTable>
                 </div>

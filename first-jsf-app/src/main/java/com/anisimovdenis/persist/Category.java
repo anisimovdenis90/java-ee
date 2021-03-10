@@ -1,5 +1,7 @@
 package com.anisimovdenis.persist;
 
+import com.anisimovdenis.service.CategoryDto;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.List;
@@ -30,6 +32,10 @@ public class Category {
     public Category(Long id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public Category(CategoryDto categoryDto) {
+        this(categoryDto.getId(), categoryDto.getName());
     }
 
     public Long getId() {

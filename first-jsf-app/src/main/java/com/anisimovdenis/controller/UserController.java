@@ -1,11 +1,11 @@
 package com.anisimovdenis.controller;
 
-import com.anisimovdenis.persist.User;
-import com.anisimovdenis.persist.UserRepository;
+import com.anisimovdenis.service.UserDto;
+import com.anisimovdenis.service.UserService;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.event.ComponentSystemEvent;
-import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
@@ -14,45 +14,45 @@ import java.util.List;
 @SessionScoped
 public class UserController implements Serializable {
 
-    @Inject
-    private UserRepository userRepository;
+    @EJB
+    private UserService userService;
 
-    private List<User> users;
+    private List<UserDto> users;
 
-    private User user;
+    private UserDto userDto;
 
-    public User getUser() {
-        return user;
+    public UserDto getUser() {
+        return userDto;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(UserDto userDto) {
+        this.userDto = userDto;
     }
 
     public void preloadData(ComponentSystemEvent componentSystemEvent) {
-        users = userRepository.findAll();
+        users = userService.findAll();
     }
 
     public String createUser() {
-        this.user = new User();
+        this.userDto = new UserDto();
         return "/user_form.xhtml?faces-redirect=true";
     }
 
-    public List<User> getAllUsers() {
+    public List<UserDto> getAllUsers() {
         return users;
     }
 
-    public String editUser(User user) {
-        this.user = user;
+    public String editUser(UserDto userDto) {
+        this.userDto = userDto;
         return "/user_form.xhtml?faces-redirect=true";
     }
 
-    public void deleteUser(User user) {
-        userRepository.deleteById(user.getId());
+    public void deleteUser(UserDto userDto) {
+        userService.deleteById(userDto.getId());
     }
 
     public String saveUser() {
-        userRepository.saveOrUpdate(user);
+        userService.saveOrUpdate(userDto);
         return "/user.xhtml?faces-redirect=true";
     }
 }

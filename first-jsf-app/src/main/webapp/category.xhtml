@@ -1,7 +1,8 @@
 <html lang="en"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:pp="http://primefaces.org/ui">
 
 <ui:param name="pageName" value="Categories"/>
 <ui:include src="WEB-INF/fragments/head.xhtml"/>
@@ -33,15 +34,14 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">Actions</f:facet>
-                            <h:commandButton value="Edit" styleClass="btn btn-success"
-                                             action="#{categoryController.editCategory(category)}">
-                                <i class="fas fa-edit"/>
-                            </h:commandButton>
-                            <h:commandButton value="Delete" styleClass="btn btn-danger"
-                                             action="#{categoryController.deleteCategory(category)}">
-                                <i class="fas fa-trash-alt"/>
+                            <pp:commandButton styleClass="btn btn-success"
+                                              icon="fas fa-edit"
+                                              action="#{categoryController.editCategory(category)}"/>
+                            <pp:commandButton styleClass="btn btn-danger"
+                                              icon="fas fa-trash-alt"
+                                              action="#{categoryController.deleteCategory(category)}">
                                 <f:ajax event="click" render="categoryForm"/>
-                            </h:commandButton>
+                            </pp:commandButton>
                         </h:column>
                     </h:dataTable>
                 </div>

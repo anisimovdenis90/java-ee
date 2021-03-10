@@ -2,14 +2,12 @@ package com.anisimovdenis.controller;
 
 import com.anisimovdenis.persist.Category;
 import com.anisimovdenis.persist.CategoryRepository;
-import com.anisimovdenis.persist.Product;
 import com.anisimovdenis.service.ProductDto;
 import com.anisimovdenis.service.ProductService;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.event.ComponentSystemEvent;
-import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
@@ -38,8 +36,11 @@ public class ProductController implements Serializable {
         return categories;
     }
 
-    public void preloadData(ComponentSystemEvent componentSystemEvent) {
+    public void preloadProducts(ComponentSystemEvent componentSystemEvent) {
         products = productService.findAll();
+    }
+
+    public void preloadCategories(ComponentSystemEvent componentSystemEvent) {
         categories = categoryRepository.findAll();
     }
 
@@ -54,10 +55,6 @@ public class ProductController implements Serializable {
     public String createProduct() {
         this.product = new ProductDto();
         return "/product_form.xhtml?faces-redirect=true";
-    }
-
-    public List<Category> getAllCategories() {
-        return categoryRepository.findAll();
     }
 
     public String editProduct(ProductDto product) {

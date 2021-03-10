@@ -9,6 +9,8 @@
 
 <h:body>
 
+    <f:event listener="#{productController.preloadCategories}" type="preRenderView"/>
+
     <ui:include src="WEB-INF/fragments/navigation.xhtml"/>
 
     <div class="container">

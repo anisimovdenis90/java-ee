@@ -1,7 +1,7 @@
 package com.anisimovdenis.controller;
 
-import com.anisimovdenis.persist.Category;
-import com.anisimovdenis.persist.CategoryRepository;
+import com.anisimovdenis.service.CategoryDto;
+import com.anisimovdenis.service.CategoryService;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
@@ -15,44 +15,44 @@ import java.util.List;
 public class CategoryController implements Serializable {
 
     @EJB
-    private CategoryRepository categoryRepository;
+    private CategoryService categoryService;
 
-    private List<Category> categories;
+    private List<CategoryDto> categories;
 
-    private Category category;
+    private CategoryDto categoryDto;
 
-    public Category getCategory() {
-        return category;
+    public CategoryDto getCategoryDto() {
+        return categoryDto;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategoryDto(CategoryDto categoryDto) {
+        this.categoryDto = categoryDto;
     }
 
     public void preloadData(ComponentSystemEvent componentSystemEvent) {
-        categories = categoryRepository.findAll();
+        categories = categoryService.findAll();
     }
 
     public String createCategory() {
-        this.category = new Category();
+        this.categoryDto = new CategoryDto();
         return "/category_form.xhtml?faces-redirect=true";
     }
 
-    public List<Category> getAllCategories() {
+    public List<CategoryDto> getAllCategories() {
         return categories;
     }
 
-    public String editCategory(Category category) {
-        this.category = category;
+    public String editCategory(CategoryDto categoryDto) {
+        this.categoryDto = categoryDto;
         return "/category_form.xhtml?faces-redirect=true";
     }
 
-    public void deleteCategory(Category category) {
-        categoryRepository.deleteById(category.getId());
+    public void deleteCategory(CategoryDto categoryDto) {
+        categoryService.deleteById(categoryDto.getId());
     }
 
     public String saveCategory() {
-        categoryRepository.saveOrUpdate(category);
+        categoryService.saveOrUpdate(categoryDto);
         return "/category.xhtml?faces-redirect=true";
     }
 }
