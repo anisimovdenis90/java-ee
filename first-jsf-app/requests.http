@@ -1,0 +1,36 @@
+GET http://127.0.0.1:8080/first-jsf-app/api/v1/product
+
+###
+
+GET http://127.0.0.1:8080/first-jsf-app/api/v1/product/1
+
+###
+
+POST http://127.0.0.1:8080/first-jsf-app/api/v1/product
+Content-Type: application/json
+
+{
+  "categoryId": 2,
+  "categoryName": "Category 2",
+  "description": "Description for product 999",
+  "name": "Product 999",
+  "price": 3000.00
+}
+
+###
+
+PUT http://127.0.0.1:8080/first-jsf-app/api/v1/product
+Content-Type: application/json
+
+{
+  "categoryId": 2,
+  "categoryName": "Category 2",
+  "description": "Description for changed product 1",
+  "id": 1,
+  "name": "Changed product 1",
+  "price": 300.00
+}
+
+###
+
+DELETE http://127.0.0.1:8080/first-jsf-app/api/v1/product/5
