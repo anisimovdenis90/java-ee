@@ -8,6 +8,8 @@
         <outputRelativeToContentRoot value="true" />
         <module name="remote-client" />
         <module name="product-service-api" />
+        <module name="category-service-api" />
+        <module name="user-service-api" />
         <module name="first-web-app" />
         <module name="first-jsf-app" />
       </profile>

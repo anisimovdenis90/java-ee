@@ -1,6 +1,4 @@
-package com.anisimovdenis.service;
-
-import com.anisimovdenis.persist.User;
+package com.anisimovdenis;
 
 import java.time.LocalDate;
 
@@ -19,15 +17,6 @@ public class UserDto {
     private String phone;
 
     public UserDto() {
-    }
-
-    public UserDto(User user) {
-        this.id = user.getId();
-        this.firstname = user.getFirstname();
-        this.lastname = user.getLastname();
-        this.email = user.getEmail();
-        this.birthday = user.getBirthday();
-        this.phone = user.getPhone();
     }
 
     public Long getId() {

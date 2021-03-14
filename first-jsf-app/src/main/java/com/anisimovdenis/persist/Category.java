@@ -1,6 +1,6 @@
 package com.anisimovdenis.persist;
 
-import com.anisimovdenis.service.CategoryDto;
+import com.anisimovdenis.CategoryDto;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -11,6 +11,7 @@ import java.util.List;
 @NamedQueries({
         @NamedQuery(name = "findAllCategories", query = "FROM Category"),
         @NamedQuery(name = "countAllCategories", query = "SELECT COUNT(*) FROM Category"),
+        @NamedQuery(name = "findAllCategoriesWithProducts", query = "SELECT c FROM Category c JOIN FETCH c.products"),
         @NamedQuery(name = "deleteCategoryById", query = "DELETE FROM Category c WHERE c.id = :id")
 })
 public class Category {

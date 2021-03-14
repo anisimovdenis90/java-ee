@@ -1,7 +1,9 @@
 package com.anisimovdenis.service;
 
+import com.anisimovdenis.UserDto;
 import com.anisimovdenis.persist.User;
 import com.anisimovdenis.persist.UserRepository;
+import com.anisimovdenis.util.DtoUtil;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -22,7 +24,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserDto> findAll() {
-        return userRepository.findAll().stream().map(UserDto::new).collect(Collectors.toList());
+        return userRepository.findAll().stream().map(DtoUtil::buildUserDto).collect(Collectors.toList());
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.anisimovdenis.service;
 
+import com.anisimovdenis.UserDto;
 import com.anisimovdenis.persist.User;
 
 import javax.ejb.Local;

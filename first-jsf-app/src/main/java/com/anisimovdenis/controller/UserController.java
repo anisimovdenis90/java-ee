@@ -1,6 +1,6 @@
 package com.anisimovdenis.controller;
 
-import com.anisimovdenis.service.UserDto;
+import com.anisimovdenis.UserDto;
 import com.anisimovdenis.service.UserService;
 
 import javax.ejb.EJB;

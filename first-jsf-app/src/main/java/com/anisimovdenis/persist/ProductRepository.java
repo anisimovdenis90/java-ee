@@ -27,6 +27,14 @@ public class ProductRepository {
         return em.find(Product.class, id);
     }
 
+    public List<Product> findByCategoryId(Long categoryId) {
+        return em.createNamedQuery("findProductsByCategoryId", Product.class).setParameter("categoryId", categoryId).getResultList();
+    }
+
+    public List<Product> findByName(String name) {
+        return em.createNamedQuery("findProductsByName", Product.class).setParameter("name", name).getResultList();
+    }
+
     public void saveOrUpdate(Product product) {
         if (product.getId() == null) {
             em.persist(product);

@@ -1,6 +1,6 @@
 package com.anisimovdenis.controller;
 
-import com.anisimovdenis.service.CategoryDto;
+import com.anisimovdenis.CategoryDto;
 import com.anisimovdenis.service.CategoryService;
 
 import javax.ejb.EJB;

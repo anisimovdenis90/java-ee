@@ -19,6 +19,10 @@ public class CategoryRepository {
         return em.createNamedQuery("findAllCategories", Category.class).getResultList();
     }
 
+    public List<Category> findAllWithProducts() {
+        return em.createNamedQuery("findAllCategoriesWithProducts", Category.class).getResultList();
+    }
+
     public Category findById(Long id) {
         return em.find(Category.class, id);
     }
