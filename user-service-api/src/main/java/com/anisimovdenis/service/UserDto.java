@@ -1,8 +1,9 @@
-package com.anisimovdenis;
+package com.anisimovdenis.service;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class UserDto {
+public class UserDto implements Serializable {
 
     private Long id;
 

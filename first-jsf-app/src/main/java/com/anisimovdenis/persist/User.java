@@ -1,6 +1,6 @@
 package com.anisimovdenis.persist;
 
-import com.anisimovdenis.UserDto;
+import com.anisimovdenis.service.UserDto;
 
 import javax.persistence.*;
 import java.time.LocalDate;

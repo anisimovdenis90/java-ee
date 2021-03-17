@@ -1,7 +1,5 @@
 package com.anisimovdenis.service;
 
-import com.anisimovdenis.CategoryDto;
-
 import javax.ejb.Local;
 import java.util.List;
 

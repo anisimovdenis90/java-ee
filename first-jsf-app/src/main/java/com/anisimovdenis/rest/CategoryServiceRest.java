@@ -1,6 +1,6 @@
 package com.anisimovdenis.rest;
 
-import com.anisimovdenis.CategoryDto;
+import com.anisimovdenis.service.CategoryDto;
 
 import javax.ejb.Local;
 import javax.ws.rs.*;

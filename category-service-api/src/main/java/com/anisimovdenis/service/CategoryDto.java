@@ -1,10 +1,9 @@
-package com.anisimovdenis;
+package com.anisimovdenis.service;
 
-import com.anisimovdenis.service.ProductDto;
-
+import java.io.Serializable;
 import java.util.List;
 
-public class CategoryDto {
+public class CategoryDto implements Serializable {
 
     private Long id;
 

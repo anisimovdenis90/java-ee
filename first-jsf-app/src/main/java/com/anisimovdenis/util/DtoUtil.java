@@ -1,7 +1,7 @@
 package com.anisimovdenis.util;
 
-import com.anisimovdenis.CategoryDto;
-import com.anisimovdenis.UserDto;
+import com.anisimovdenis.service.CategoryDto;
+import com.anisimovdenis.service.UserDto;
 import com.anisimovdenis.persist.Category;
 import com.anisimovdenis.persist.Product;
 import com.anisimovdenis.persist.User;

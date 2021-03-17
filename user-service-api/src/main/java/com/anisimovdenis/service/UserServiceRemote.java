@@ -1,4 +1,4 @@
-package com.anisimovdenis;
+package com.anisimovdenis.service;
 
 import java.util.List;
 

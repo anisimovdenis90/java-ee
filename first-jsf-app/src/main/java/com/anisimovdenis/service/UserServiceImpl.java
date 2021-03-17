@@ -1,18 +1,20 @@
 package com.anisimovdenis.service;
 
-import com.anisimovdenis.UserDto;
 import com.anisimovdenis.persist.User;
 import com.anisimovdenis.persist.UserRepository;
+import com.anisimovdenis.rest.UserServiceRest;
 import com.anisimovdenis.util.DtoUtil;
 
 import javax.ejb.EJB;
+import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Stateless
-public class UserServiceImpl implements UserService {
+@Remote(UserServiceRemote.class)
+public class UserServiceImpl implements UserService, UserServiceRest, UserServiceRemote {
 
     @EJB
     private UserRepository userRepository;
@@ -28,8 +30,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findById(Long id) {
-        return userRepository.findById(id);
+    public UserDto findById(Long id) {
+        return DtoUtil.buildUserDto(userRepository.findById(id));
+    }
+
+    @Override
+    public void insert(UserDto userDto) {
+        if (userDto.getId() != null) {
+            throw new IllegalArgumentException();
+        }
+        saveOrUpdate(userDto);
+    }
+
+    @Override
+    public void update(UserDto userDto) {
+        if (userDto.getId() == null) {
+            throw new IllegalArgumentException();
+        }
+        saveOrUpdate(userDto);
     }
 
     @Override

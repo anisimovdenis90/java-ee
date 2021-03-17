@@ -1,6 +1,6 @@
 package com.anisimovdenis.persist;
 
-import com.anisimovdenis.CategoryDto;
+import com.anisimovdenis.service.CategoryDto;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;

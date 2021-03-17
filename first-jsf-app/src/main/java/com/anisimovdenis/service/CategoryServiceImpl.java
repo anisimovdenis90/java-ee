@@ -1,19 +1,19 @@
 package com.anisimovdenis.service;
 
-import com.anisimovdenis.CategoryDto;
-import com.anisimovdenis.CategoryServiceRemote;
 import com.anisimovdenis.persist.Category;
 import com.anisimovdenis.persist.CategoryRepository;
 import com.anisimovdenis.rest.CategoryServiceRest;
 import com.anisimovdenis.util.DtoUtil;
 
 import javax.ejb.EJB;
+import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Stateless
+@Remote(CategoryServiceRemote.class)
 public class CategoryServiceImpl implements CategoryService, CategoryServiceRemote, CategoryServiceRest {
 
     @EJB

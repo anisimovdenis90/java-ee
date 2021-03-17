@@ -1,8 +1,5 @@
 package com.anisimovdenis.service;
 
-import com.anisimovdenis.UserDto;
-import com.anisimovdenis.persist.User;
-
 import javax.ejb.Local;
 import java.util.List;
 
@@ -13,7 +10,7 @@ public interface UserService {
 
     List<UserDto> findAll();
 
-    User findById(Long id);
+    UserDto findById(Long id);
 
     void saveOrUpdate(UserDto user);
 

@@ -1,6 +1,6 @@
 package com.anisimovdenis.rest;
 
-import com.anisimovdenis.UserDto;
+import com.anisimovdenis.service.UserDto;
 
 import javax.ejb.Local;
 import javax.ws.rs.*;
@@ -8,7 +8,7 @@ import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 @Local
-@Path("v1/user")
+@Path("/v1/user")
 public interface UserServiceRest {
 
     @GET
