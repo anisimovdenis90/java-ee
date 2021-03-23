@@ -2,7 +2,6 @@ package com.anisimovdenis;
 
 import com.anisimovdenis.service.CategoryServiceRemote;
 import com.anisimovdenis.service.ProductServiceRemote;
-import com.anisimovdenis.service.UserServiceRemote;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -21,14 +20,11 @@ public class EjbClient {
 
         ProductServiceRemote productService = (ProductServiceRemote) context.lookup(jndiProductServiceName);
         CategoryServiceRemote categoryService = (CategoryServiceRemote) context.lookup(jndiCategoryServiceName);
-        UserServiceRemote userService = (UserServiceRemote) context.lookup(jndiUserServiceName);
 
         productService.findAll().
                 forEach(p -> System.out.println(p.getId() + "\t" + p.getName() + "\t" + p.getPrice()));
         categoryService.findAll().
                 forEach(c -> System.out.println(c.getId() + "\t" + c.getName() + "\t" + c.getProductList()));
-        userService.findAll().
-                forEach(u -> System.out.println(u.getId() + "\t" + u.getFirstname() + "\t" + u.getLastname()));
     }
 
     public static Context createInitialContext() throws IOException, NamingException {

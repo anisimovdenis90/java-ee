@@ -1,0 +1,37 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:param name="pageName" value="Login"/>
+<ui:include src="/WEB-INF/fragments/head.xhtml"/>
+
+<h:body>
+
+    <ui:include src="/WEB-INF/fragments/navigation.xhtml"/>
+
+    <div class="container">
+        <div class="row py-2">
+            <div class="col-12">
+                <form action="j_security_check" method="post">
+                    <div class="form-floating mb-3">
+                        <h:outputLabel value="Login" for="j_username"/>
+                        <h:inputText styleClass="form-control" id="j_username" name="j_username" placeholder="Enter login"
+                                     required="true" requiredMessage="Login is required"/>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <h:outputLabel value="Password" for="j_password"/>
+                        <h:inputText p:type="password" styleClass="form-control" id="j_password" name="j_password"
+                                     placeholder="Enter password" />
+                    </div>
+                    <button class="btn btn-primary">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <ui:include src="/WEB-INF/fragments/script.xhtml"/>
+
+</h:body>
+
+</html>

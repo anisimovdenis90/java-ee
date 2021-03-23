@@ -6,15 +6,13 @@ import com.anisimovdenis.rest.UserServiceRest;
 import com.anisimovdenis.util.DtoUtil;
 
 import javax.ejb.EJB;
-import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Stateless
-@Remote(UserServiceRemote.class)
-public class UserServiceImpl implements UserService, UserServiceRest, UserServiceRemote {
+public class UserServiceImpl implements UserService, UserServiceRest {
 
     @EJB
     private UserRepository userRepository;

@@ -2,7 +2,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<ui:param name="pageName" value="Category Form"/>
+<ui:param name="pageName" value="Role Form"/>
 <ui:include src="/WEB-INF/fragments/head.xhtml"/>
 
 <h:body>
@@ -17,12 +17,11 @@
                         <h:outputLabel for="name">Name</h:outputLabel>
 <!--                        <label>Name</label>-->
                         <h:inputText styleClass="form-control" id="name"
-                                     value="#{categoryController.categoryDto.name}"
+                                     value="#{roleController.roleDto.name}"
                                      placeholder="Enter name"/>
-                        <h:message for="name" style="color: red"/>
                     </div>
                     <h:commandButton value="Submit" styleClass="btn btn-primary"
-                                     action="#{categoryController.saveCategory()}"/>
+                                     action="#{roleController.saveRole()}"/>
                 </h:form>
             </div>
         </div>
