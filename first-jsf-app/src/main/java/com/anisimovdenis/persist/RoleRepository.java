@@ -22,7 +22,7 @@ public class RoleRepository {
         return em.merge(role);
     }
 
-    public Role findById(int id) {
+    public Role findById(Long id) {
         return em.find(Role.class, id);
     }
 

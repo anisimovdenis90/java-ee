@@ -30,6 +30,12 @@
                                      placeholder="Enter password"/>
                     </div>
                     <div class="form-group">
+                        <label>Firstname</label>
+                        <h:inputText styleClass="form-control" id="firstname"
+                                     value="#{userController.user.firstname}"
+                                     placeholder="Enter firstname"/>
+                    </div>
+                    <div class="form-group">
                         <label>Lastname</label>
                         <h:inputText styleClass="form-control" id="lastname"
                                      value="#{userController.user.lastname}"
@@ -57,11 +63,11 @@
                     </div>
                     <div class="form-group">
                         <label>Category</label>
-                        <h:selectOneMenu styleClass="form-control" id="role" name="role"
-                                         value="#{userController.user.roles}">
+                        <h:selectManyListbox styleClass="form-control" id="role" name="role"
+                                         value="#{userController.toSaveRoles}">
                             <f:selectItems value="#{userController.roles}" var="role"
-                                           itemValue="#{role.id}" itemLabel="#{role.name}"/>
-                        </h:selectOneMenu>
+                                           itemValue="#{role}" itemLabel="#{role.name}"/>
+                        </h:selectManyListbox>
                     </div>
 
                     <h:commandButton value="Submit" styleClass="btn btn-primary"

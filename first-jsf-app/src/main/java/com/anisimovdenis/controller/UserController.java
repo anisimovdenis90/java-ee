@@ -1,6 +1,9 @@
 package com.anisimovdenis.controller;
 
-import com.anisimovdenis.service.*;
+import com.anisimovdenis.service.RoleDto;
+import com.anisimovdenis.service.RoleService;
+import com.anisimovdenis.service.UserDto;
+import com.anisimovdenis.service.UserService;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
@@ -9,7 +12,10 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Named
 @SessionScoped
@@ -28,6 +34,8 @@ public class UserController implements Serializable {
 
     private List<RoleDto> roles;
 
+    private List<RoleDto> toSaveRoles;
+
     private UserDto userDto;
 
     public UserDto getUser() {
@@ -36,6 +44,14 @@ public class UserController implements Serializable {
 
     public List<RoleDto> getRoles() {
         return roles;
+    }
+
+    public List<RoleDto> getToSaveRoles() {
+        return toSaveRoles;
+    }
+
+    public void setToSaveRoles(List<RoleDto> toSaveRoles) {
+        this.toSaveRoles = toSaveRoles;
     }
 
     public void setUser(UserDto userDto) {
@@ -69,6 +85,7 @@ public class UserController implements Serializable {
     }
 
     public String saveUser() {
+        userDto.setRoles(new HashSet<>(toSaveRoles));
         userService.saveOrUpdate(userDto);
         return "/admin/user.xhtml?faces-redirect=true";
     }

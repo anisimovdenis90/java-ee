@@ -65,6 +65,11 @@ public class User implements Serializable {
         this.id = user.getId();
         this.login = user.getLogin();
         this.password = user.getPassword();
+        this.firstname = user.getFirstname();
+        this.lastname = user.getLastname();
+        this.birthday = user.getBirthday();
+        this.email = user.getEmail();
+        this.phone = user.getPhone();
         this.roles = new HashSet<>();
         user.getRoles().forEach(r -> roles.add(new Role(r)));
     }
