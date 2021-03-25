@@ -2,10 +2,15 @@ package com.anisimovdenis.service;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Set;
 
 public class UserDto implements Serializable {
 
     private Long id;
+
+    private String login;
+
+    private String password;
 
     private String firstname;
 
@@ -16,6 +21,8 @@ public class UserDto implements Serializable {
     private LocalDate birthday;
 
     private String phone;
+
+    private Set<RoleDto> roles;
 
     public UserDto() {
     }
@@ -66,5 +73,29 @@ public class UserDto implements Serializable {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Set<RoleDto> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<RoleDto> roles) {
+        this.roles = roles;
     }
 }

@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Stateless
-@Remote(CategoryServiceRemote.class)
+//@Remote(CategoryServiceRemote.class)
 public class CategoryServiceImpl implements CategoryService, CategoryServiceRemote, CategoryServiceRest {
 
     @EJB
