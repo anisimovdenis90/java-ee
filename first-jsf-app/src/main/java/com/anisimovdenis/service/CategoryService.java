@@ -10,6 +10,8 @@ public interface CategoryService {
 
     List<CategoryDto> findAll();
 
+    List<CategoryDto> findAllWithProducts();
+
     CategoryDto findById(Long id);
 
     void saveOrUpdate(CategoryDto category);

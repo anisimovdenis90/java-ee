@@ -5,16 +5,30 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <ui:param name="pageName" value="User Form"/>
-<ui:include src="WEB-INF/fragments/head.xhtml"/>
+<ui:include src="/WEB-INF/fragments/head.xhtml"/>
 
 <h:body>
 
-    <ui:include src="WEB-INF/fragments/navigation.xhtml"/>
+    <f:event listener="#{userController.preloadRoles}" type="preRenderView"/>
+
+    <ui:include src="/WEB-INF/fragments/navigation.xhtml"/>
 
     <div class="container">
         <div class="row py-2">
             <div class="col-12">
                 <h:form>
+                    <div class="form-group">
+                        <label>Login</label>
+                        <h:inputText styleClass="form-control" id="login"
+                                     value="#{userController.user.login}"
+                                     placeholder="Enter login"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <h:inputText styleClass="form-control" id="password"
+                                     value="#{userController.user.password}"
+                                     placeholder="Enter password"/>
+                    </div>
                     <div class="form-group">
                         <label>Firstname</label>
                         <h:inputText styleClass="form-control" id="firstname"
@@ -47,6 +61,15 @@
                                      value="#{userController.user.phone}"
                                      placeholder="Enter phone"/>
                     </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <h:selectManyListbox styleClass="form-control" id="role" name="role"
+                                         value="#{userController.toSaveRoles}">
+                            <f:selectItems value="#{userController.roles}" var="role"
+                                           itemValue="#{role}" itemLabel="#{role.name}"/>
+                        </h:selectManyListbox>
+                    </div>
+
                     <h:commandButton value="Submit" styleClass="btn btn-primary"
                                      action="#{userController.saveUser()}"/>
                 </h:form>
@@ -54,6 +77,6 @@
         </div>
     </div>
 
-    <ui:include src="WEB-INF/fragments/script.xhtml"/>
+    <ui:include src="/WEB-INF/fragments/script.xhtml"/>
 </h:body>
 </html>

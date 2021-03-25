@@ -5,6 +5,7 @@ import com.anisimovdenis.persist.CategoryRepository;
 import com.anisimovdenis.persist.Product;
 import com.anisimovdenis.persist.ProductRepository;
 import com.anisimovdenis.rest.ProductServiceRest;
+import com.anisimovdenis.util.DtoUtil;
 
 import javax.ejb.EJB;
 import javax.ejb.Remote;
@@ -14,7 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Stateless
-@Remote(ProductServiceRemote.class)
+//@Remote(ProductServiceRemote.class)
 public class ProductServiceImpl implements ProductService, ProductServiceRemote, ProductServiceRest {
 
     @EJB
@@ -30,28 +31,24 @@ public class ProductServiceImpl implements ProductService, ProductServiceRemote,
 
     @Override
     public List<ProductDto> findAll() {
-        return productRepository.findAll().stream().map(this::buildProductDto).collect(Collectors.toList());
+        return productRepository.findAll().stream().map(DtoUtil::buildProductDto).collect(Collectors.toList());
     }
 
-    private ProductDto buildProductDto(Product product) {
-        ProductDto productDto = new ProductDto();
+    @Override
+    public List<ProductDto> findByName(String name) {
+        return productRepository.findByName(name).stream().map(DtoUtil::buildProductDto).collect(Collectors.toList());
+    }
 
-        productDto.setId(product.getId());
-        productDto.setName(product.getName());
-        productDto.setDescription(product.getDescription());
-        productDto.setPrice(product.getPrice());
-        Category category = product.getCategory();
-        productDto.setCategoryId(category != null ? category.getId() : null);
-        productDto.setCategoryName(category != null ? category.getName() : null);
-
-        return productDto;
+    @Override
+    public List<ProductDto> findByCategoryId(Long categoryId) {
+        return productRepository.findByCategoryId(categoryId).stream().map(DtoUtil::buildProductDto).collect(Collectors.toList());
     }
 
     @Override
     public ProductDto findById(Long id) {
         Product product = productRepository.findById(id);
         if (product != null) {
-            return buildProductDto(product);
+            return DtoUtil.buildProductDto(product);
         }
         return null;
     }

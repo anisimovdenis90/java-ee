@@ -1,6 +1,6 @@
 package com.anisimovdenis.rest;
 
-import com.anisimovdenis.service.ProductDto;
+import com.anisimovdenis.service.CategoryDto;
 
 import javax.ejb.Local;
 import javax.ws.rs.*;
@@ -8,8 +8,8 @@ import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 @Local
-@Path("/v1/product")
-public interface ProductServiceRest {
+@Path("/v1/category")
+public interface CategoryServiceRest {
 
     @GET
     @Path("/count")
@@ -18,30 +18,25 @@ public interface ProductServiceRest {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    List<ProductDto> findAll();
+    List<CategoryDto> findAll();
 
     @GET
-    @Path("/{name}")
+    @Path("/full")
     @Produces(MediaType.APPLICATION_JSON)
-    List<ProductDto> findByName(@PathParam("name") String name);
-
-    @GET
-    @Path("/by_category/{categoryId}")
-    @Produces(MediaType.APPLICATION_JSON)
-    List<ProductDto> findByCategoryId(@PathParam("categoryId") Long categoryId);
+    List<CategoryDto> findAllWithProducts();
 
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    ProductDto findById(@PathParam("id") Long id);
+    CategoryDto findById(@PathParam("id") Long id);
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    void insert(ProductDto productDto);
+    void insert(CategoryDto categoryDto);
 
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    void update(ProductDto productDto);
+    void update(CategoryDto categoryDto);
 
     @DELETE
     @Path("/{id}")

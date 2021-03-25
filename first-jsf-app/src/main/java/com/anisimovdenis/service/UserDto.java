@@ -1,12 +1,16 @@
 package com.anisimovdenis.service;
 
-import com.anisimovdenis.persist.User;
-
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Set;
 
-public class UserDto {
+public class UserDto implements Serializable {
 
     private Long id;
+
+    private String login;
+
+    private String password;
 
     private String firstname;
 
@@ -18,16 +22,9 @@ public class UserDto {
 
     private String phone;
 
-    public UserDto() {
-    }
+    private Set<RoleDto> roles;
 
-    public UserDto(User user) {
-        this.id = user.getId();
-        this.firstname = user.getFirstname();
-        this.lastname = user.getLastname();
-        this.email = user.getEmail();
-        this.birthday = user.getBirthday();
-        this.phone = user.getPhone();
+    public UserDto() {
     }
 
     public Long getId() {
@@ -76,5 +73,29 @@ public class UserDto {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Set<RoleDto> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<RoleDto> roles) {
+        this.roles = roles;
     }
 }

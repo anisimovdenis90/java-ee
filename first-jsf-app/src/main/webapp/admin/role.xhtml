@@ -4,42 +4,43 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:pp="http://primefaces.org/ui">
 
-<ui:param name="pageName" value="Cart"/>
+<ui:param name="pageName" value="Roles"/>
 <ui:include src="/WEB-INF/fragments/head.xhtml"/>
 
 <h:body>
+
+    <f:event listener="#{roleController.preloadData}" type="preRenderView"/>
 
     <ui:include src="/WEB-INF/fragments/navigation.xhtml"/>
 
     <div class="container">
         <div class="row py-2">
-            <h:form id="cartForm">
+            <h:form id="categoryForm">
+                <div class="col-12">
+                    <h:commandButton value="Add Role" styleClass="btn btn-primary"
+                                     action="#{roleController.createRole()}"/>
+                </div>
 
                 <div class="col-12">
-                    <h:dataTable value="#{cartController.cart}" var="product"
+                    <h:dataTable value="#{roleController.allRoles}" var="role"
                                  styleClass="table table-bordered my-2">
                         <h:column>
                             <f:facet name="header">Id</f:facet>
-                            #{product.id}
+                            #{role.id}
                         </h:column>
                         <h:column>
                             <f:facet name="header">Name</f:facet>
-                            #{product.name}
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">Description</f:facet>
-                            #{product.description}
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">Price</f:facet>
-                            #{product.price}
+                            #{role.name}
                         </h:column>
                         <h:column>
                             <f:facet name="header">Actions</f:facet>
+                            <pp:commandButton styleClass="btn btn-success"
+                                              icon="fas fa-edit"
+                                              action="#{roleController.editRole(role)}"/>
                             <pp:commandButton styleClass="btn btn-danger"
                                               icon="fas fa-trash-alt"
-                                              action="#{cartController.removeFromCart(product)}">
-                                <f:ajax event="click" render="cartForm"/>
+                                              action="#{roleController.deleteRole(role)}">
+                                <f:ajax event="click" render="categoryForm"/>
                             </pp:commandButton>
                         </h:column>
                     </h:dataTable>
@@ -50,4 +51,5 @@
 
     <ui:include src="/WEB-INF/fragments/script.xhtml"/>
 </h:body>
+
 </html>

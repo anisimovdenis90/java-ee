@@ -11,6 +11,7 @@ import java.util.List;
 @NamedQueries({
         @NamedQuery(name = "findAllCategories", query = "FROM Category"),
         @NamedQuery(name = "countAllCategories", query = "SELECT COUNT(*) FROM Category"),
+        @NamedQuery(name = "findAllCategoriesWithProducts", query = "SELECT c FROM Category c JOIN FETCH c.products"),
         @NamedQuery(name = "deleteCategoryById", query = "DELETE FROM Category c WHERE c.id = :id")
 })
 public class Category {
